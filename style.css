@@ -1,0 +1,101 @@
+:root {
+    --accent-yellow: #F1D302;
+    --accent-red: #E2294F;
+    --btn-background: #b1ffbb;
+    --btn-color: #003a00;
+}
+
+/* ---------  RESET  --------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0 auto;
+  padding: 0;
+  height: 100vh;
+}
+
+img {
+  max-width: 98%;
+  display: block;
+}
+
+button {
+  font: inherit;
+}
+
+/* -------- TYPOGRAPHY  -------- */
+body {
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: clamp(1rem, 1.5rem, 2.3rem);
+    font-weight: 300;
+    text-align: center;
+}
+
+h1 {
+    font-size: clamp(1rem, 5rem, 10rem);
+    color: var(--accent-yellow);
+}
+
+.message {
+    font-size: clamp(2.4rem, 2.9rem, 4.5rem);
+    font-style: bold;
+    font-weight: 400;
+    color: var(--accent-red);
+}
+
+/* -------- LAYOUT -------- */
+body {
+    background-image: url("cat-blackjack-mobile.png"), radial-gradient(circle at top left, #004700 15%, #005e01 30%, #2A9134);
+    background-attachment: fixed;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 100vh;
+}
+
+.container {
+    padding: 1em .5em;
+    margin: auto;
+}
+
+/* -------- COMPONENTS-------- */
+.btn-box {
+    margin-top: 2em;
+    display: flex;
+    gap: 2.3em;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid red; */
+}
+
+button {
+    width: 45vw;
+    padding: .5em .5em;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--btn-background);
+    color: var(--btn-color);
+    font-weight: 400;
+    font-size: clamp(2rem, 2.5rem, 4rem);
+    cursor: pointer;
+}
+
+button:focus,
+button:hover {
+    background-color: var(--btn-color);
+    color: var(--btn-background);
+}
+
+button:active {
+  outline: none;
+  box-shadow: 6px 7px 10px 5px rgba(25,25,25,0.26);
+  -webkit-box-shadow: 6px 7px 10px 5px rgba(25,25,25,0.26);
+  -moz-box-shadow: 6px 7px 10px 5px rgba(25,25,25,0.26);
+  margin: 2px 5px 1px 5px;
+  transition: 100ms;
+}
