@@ -2,9 +2,9 @@
 let messageEl = document.getElementById("messageEl");
 let cardsEl = document.getElementById("cardsEl");
 let sumEl = document.getElementById("sumEl");
-// let startGameBtn = document.getElementById("startGameBtn");
-// let newCardBtn = document.getElementById("newCardBtn");
-// let root = document.documentElement;
+let startGameBtn = document.getElementById("startGameBtn");
+let newCardBtn = document.getElementById("newCardBtn");
+let root = document.documentElement;
 
 // declare variables
 let sum = 0;
@@ -22,13 +22,15 @@ const drawRandomCard = () => {
     if (randomNumber > 10) {
         return 10;
     } else if (randomNumber === 1) {
-        return 11;
+        return 1;
     } else {
         return randomNumber;
     } 
 };
 
 const startGame = () => {
+    root.style.setProperty("--btn-background", "#b1ffbb");
+    startGameBtn.textContent = "Start Game";
     isPlaying = true;
     // draw first 2 cards
     let firstCard = drawRandomCard();
@@ -36,7 +38,7 @@ const startGame = () => {
     // add to cards array
     cards = [firstCard, secondCard];
     // display first 2 cards
-    cardsEl.textContent = cards[0] + "  " + cards[1] + "  ";
+    cardsEl.textContent = ` ${cards[0]}  ${cards[1]}  `;
     // set initial sum
     sum = firstCard + secondCard;
     renderGame();
@@ -45,10 +47,11 @@ const startGame = () => {
 const renderGame = () => {
     // display additional cards
     for (let i = 2; i < cards.length; i++) {
-        cardsEl.textContent += cards[i] + "  ";
+        // BUG: doubles up after 4th newCard()
+        cardsEl.textContent += `${cards[i]}  `;
     };
     // display sum
-    sumEl.textContent = sum;
+    sumEl.textContent = ` ${sum}`;
     displayMessage();
 };
 
@@ -67,8 +70,32 @@ const displayMessage = () => {
     } else if (sum === 21) {
         hasBlackjack = true;
         messageEl.textContent = "Blackjack!!!";
+        setDelay(function() {
+            root.style.setProperty("--btn-background", "#F1D302");
+            startGameBtn.textContent = "Reset";
+        }, 2000);
+        resetGame();
     } else {
         messageEl.textContent = "You're out of the game!";
         isPlaying = false;
+        setDelay(function() {
+            root.style.setProperty("--btn-background", "#F1D302");
+            startGameBtn.textContent = "Reset";
+        }, 2000);
+        resetGame();
+        // root.style.setProperty("--btn-background", "#F1D302");
+        // startGameBtn.textContent = "Reset";
+        // setDelay(function() {
+        //     resetGame();
+        // }, 2000);
     }
+};
+
+const resetGame = () => {
+    messageEl.textContent = "Ready to play?";
+    cardsEl.textContent = "";
+    sumEl.textContent = "";
+    setDelay(function() {
+        startGame();
+    }, 2000);
 };
