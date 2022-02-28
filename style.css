@@ -12,14 +12,18 @@
   box-sizing: border-box;
 }
 
-html {
+html, 
+body {
   margin: 0 auto;
   padding: 0;
   height: 100vh;
+  /* NEED TO FIX OVERFLOW, BUT PROB MIGHT BE BACKGROUND IMG */
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 img {
-  max-width: 98%;
+  max-width: 95%;
   display: block;
 }
 
@@ -36,15 +40,21 @@ body {
 }
 
 h1 {
-    font-size: clamp(1rem, 5rem, 10rem);
+    font-size: clamp(1rem, 3rem, 5rem);
     color: var(--accent-yellow);
 }
 
 .message {
-    font-size: clamp(2.4rem, 2.9rem, 4.5rem);
+    font-size: clamp(1.2rem, 2.5rem, 3rem);
     font-style: bold;
     font-weight: 400;
     color: var(--accent-red);
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.results-box {
+  color: #fff;
 }
 
 /* -------- LAYOUT -------- */
@@ -55,11 +65,15 @@ body {
     background-repeat: no-repeat;
     background-size: contain;
     height: 100vh;
+    padding: 0 3em;
 }
 
 .container {
     padding: 1em .5em;
     margin: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
 }
 
 /* -------- COMPONENTS-------- */
@@ -75,13 +89,13 @@ body {
 
 button {
     width: 45vw;
-    padding: .5em .5em;
+    padding: .5em .3em;
     border: none;
     border-radius: 20px;
     background-color: var(--btn-background);
     color: var(--btn-color);
     font-weight: 400;
-    font-size: clamp(2rem, 2.5rem, 4rem);
+    font-size: clamp(1.5rem, 2rem, 3.5rem);
     cursor: pointer;
 }
 
