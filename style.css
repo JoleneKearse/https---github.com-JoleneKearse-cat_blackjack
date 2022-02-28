@@ -1,8 +1,8 @@
 :root {
     --accent-yellow: #F1D302;
     --accent-red: #E2294F;
-    --btn-background: #b1ffbb;
-    --btn-color: #003a00;
+    --green-light: #b1ffbb;
+    --green-dark: #003a00;
 }
 
 /* ---------  RESET  --------- */
@@ -17,13 +17,11 @@ body {
   margin: 0 auto;
   padding: 0;
   height: 100vh;
-  /* NEED TO FIX OVERFLOW, BUT PROB MIGHT BE BACKGROUND IMG */
   max-width: 100%;
-  overflow-x: hidden;
 }
 
 img {
-  max-width: 95%;
+  max-width: 100%;
   display: block;
 }
 
@@ -40,7 +38,7 @@ body {
 }
 
 h1 {
-    font-size: clamp(1rem, 3rem, 5rem);
+    font-size: clamp(1.5rem, 3.5rem, 6rem);
     color: var(--accent-yellow);
 }
 
@@ -54,7 +52,7 @@ h1 {
 }
 
 .results-box {
-  color: #fff;
+  color: var(--green-light);
 }
 
 /* -------- LAYOUT -------- */
@@ -63,7 +61,7 @@ body {
     background-attachment: fixed;
     background-position: bottom;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     height: 100vh;
     padding: 0 3em;
 }
@@ -92,8 +90,8 @@ button {
     padding: .5em .3em;
     border: none;
     border-radius: 20px;
-    background-color: var(--btn-background);
-    color: var(--btn-color);
+    background-color: var(--green-light);
+    color: var(--green-dark);
     font-weight: 400;
     font-size: clamp(1.5rem, 2rem, 3.5rem);
     cursor: pointer;
@@ -101,15 +99,15 @@ button {
 
 button:focus,
 button:hover {
-    background-color: var(--btn-color);
-    color: var(--btn-background);
+    background-color: var(--green-dark);
+    color: var(--green-light);
 }
 
 button:active {
-  outline: none;
   box-shadow: 6px 7px 10px 5px rgba(25,25,25,0.26);
   -webkit-box-shadow: 6px 7px 10px 5px rgba(25,25,25,0.26);
   -moz-box-shadow: 6px 7px 10px 5px rgba(25,25,25,0.26);
   margin: 2px 5px 1px 5px;
-  transition: 100ms;
+  transition: all 10s ease-out 1s; 
+  outline: none;
 }
