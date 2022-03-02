@@ -29,7 +29,7 @@ const drawRandomCard = () => {
 };
 
 const startGame = () => {
-    root.style.setProperty("--btn-background", "#b1ffbb");
+    root.style.setProperty("--green-light", "#b1ffbb");
     startGameBtn.textContent = "Start Game";
     isPlaying = true;
     // draw first 2 cards
@@ -38,7 +38,7 @@ const startGame = () => {
     // add to cards array
     cards = [firstCard, secondCard];
     // display first 2 cards
-    cardsEl.textContent = ` ${cards[0]}  ${cards[1]}  `;
+    cardsEl.textContent = ` ${cards[0]}   ${cards[1]}   `;
     // set initial sum
     sum = firstCard + secondCard;
     renderGame();
@@ -46,11 +46,9 @@ const startGame = () => {
 
 const renderGame = () => {
     // display additional cards
-    for (let i = 2; i < cards.length; i++) {
-        // BUG: doubles up after 4th newCard()
-        cardsEl.textContent += `${cards[i]}  `;
+    if (cards.length > 2) {
+        cardsEl.textContent += `${cards.slice(-1)}   `;
     };
-    // display sum
     sumEl.textContent = ` ${sum}`;
     displayMessage();
 };
@@ -70,32 +68,25 @@ const displayMessage = () => {
     } else if (sum === 21) {
         hasBlackjack = true;
         messageEl.textContent = "Blackjack!!!";
-        setDelay(function() {
-            root.style.setProperty("--btn-background", "#F1D302");
-            startGameBtn.textContent = "Reset";
-        }, 2000);
-        resetGame();
+        root.style.setProperty("--green-light", "#F1D302");
+        startGameBtn.textContent = "Reset";
+        delayReset();
     } else {
         messageEl.textContent = "You're out of the game!";
         isPlaying = false;
-        setDelay(function() {
-            root.style.setProperty("--btn-background", "#F1D302");
-            startGameBtn.textContent = "Reset";
-        }, 2000);
-        resetGame();
-        // root.style.setProperty("--btn-background", "#F1D302");
-        // startGameBtn.textContent = "Reset";
-        // setDelay(function() {
-        //     resetGame();
-        // }, 2000);
-    }
+        root.style.setProperty("--green-light", "#F1D302");
+        startGameBtn.textContent = "Reset";
+        delayReset();
+    };
+};
+
+// allow results to stay up for 5000ms after end of game
+function delayReset() {
+    setTimeout(function() {resetGame(); }, 5000);
 };
 
 const resetGame = () => {
     messageEl.textContent = "Ready to play?";
     cardsEl.textContent = "";
     sumEl.textContent = "";
-    setDelay(function() {
-        startGame();
-    }, 2000);
 };
